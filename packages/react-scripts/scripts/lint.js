@@ -1,12 +1,11 @@
 var spawn = require('cross-spawn');
 
 var args = [
-    '--config',
-    'tslint.json',
-    '--exclude',
-    'src/**/*.d.ts',
-    'src/**/*.ts',
-    'src/**/*.tsx'
+    '-t',
+    'verbose',
+    '--project',
+    './tsconfig.json',
+    '--type-check'
 ];
 var proc = spawn('tslint', args, {
     stdio: 'inherit'
