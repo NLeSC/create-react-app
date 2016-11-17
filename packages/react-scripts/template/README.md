@@ -1,7 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) using scripts package [@nlesc/react-scripts](https://github.com/NLeSC/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
-You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
+You can find the most recent version of this guide [here](https://github.com/NLeSC/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 ## Table of Contents
 
@@ -15,6 +15,7 @@ You can find the most recent version of this guide [here](https://github.com/fac
   - [npm run eject](#npm-run-eject)
 - [Displaying Lint Output in the Editor](#displaying-lint-output-in-the-editor)
 - [Installing a Dependency](#installing-a-dependency)
+  - [External Typescript typings](#external-typescript-typings)
 - [Importing a Component](#importing-a-component)
 - [Adding a Stylesheet](#adding-a-stylesheet)
 - [Post-Processing CSS](#post-processing-css)
@@ -86,17 +87,19 @@ my-app/
     favicon.ico
   src/
     App.css
-    App.js
-    App.test.js
+    App.tsx
+    App.test.tsx
     index.css
-    index.js
+    index.tsx
     logo.svg
+  tsconfig.json
+  tslint.json
 ```
 
 For the project to build, **these files must exist with exact filenames**:
 
 * `public/index.html` is the page template;
-* `src/index.js` is the JavaScript entry point.
+* `src/index.tsx` is the TypeScript entry point.
 
 You can delete or rename the other files.
 
@@ -104,7 +107,7 @@ You may create subdirectories inside `src`. For faster rebuilds, only files insi
 You need to **put any JS and CSS files inside `src`**, or Webpack won’t see them.
 
 Only files inside `public` can be used from `public/index.html`.<br>
-Read instructions below for using assets from JavaScript and HTML.
+Read instructions below for using assets from JavaScript, TypeScript and HTML.
 
 You can, however, create more top-level directories.<br>
 They will not be included in the production build so you can use them for things like documentation.
@@ -144,11 +147,18 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+### `npm run lint`
+
+Lints the app.<br>
+Prints linting errors to the terminal.
+
+The preset of TypeScript linting rules can be found at https://github.com/NLeSC/create-react-app/tree/master/packages/tslint-config-react-app.  
+
 ## Displaying Lint Output in the Editor
 
 >Note: this feature is available with `react-scripts@0.2.0` and higher.
 
-Some editors, including Sublime Text, Atom, and Visual Studio Code, provide plugins for ESLint.
+Some editors, including Sublime Text, Atom, and Visual Studio Code, provide plugins for ESLint and TSLint.
 
 They are not required for linting. You should see the linter output right in your terminal as well as the browser console. However, if you prefer the lint results to appear right in your editor, there are some extra steps you can do.
 
@@ -179,6 +189,9 @@ npm install -g eslint-config-react-app@0.3.0 eslint@3.8.1 babel-eslint@7.0.0 esl
 
 We recognize that this is suboptimal, but it is currently required due to the way we hide the ESLint dependency. The ESLint team is already [working on a solution to this](https://github.com/eslint/eslint/issues/3458) so this may become unnecessary in a couple of months.
 
+You would need to install an TSLint plugin for your editor to lint TypeScript files.
+The `tslint.json` file in the root of project will be picked up by the TSLint plugin.
+
 ## Installing a Dependency
 
 The generated project includes React and ReactDOM as dependencies. It also includes a set of scripts used by Create React App as a development dependency. You may install other dependencies (for example, React Router) with `npm`:
@@ -187,9 +200,9 @@ The generated project includes React and ReactDOM as dependencies. It also inclu
 npm install --save <library-name>
 ```
 
-### External Typescript typings
+### External TypeScript typings
 
-When dependency does not include a Typescript typings try to install it from http://microsoft.github.io/TypeSearch/
+When dependency does not include a TypeScript typings try to install it from http://microsoft.github.io/TypeSearch/
 Typings can be installed with `npm`:
 
 ```
@@ -201,7 +214,7 @@ If library does not have typings, it possible to add the typings manually to `sr
 // in src/typings.d.ts
 declare module 'typeless-package';
 
-// in src/app/app.component.ts
+// in src/App.tsx
 import * as typelessPackage from 'typeless-package';
 typelessPackage.method();
 ```
@@ -213,39 +226,56 @@ While you can still use `require()` and `module.exports`, we encourage you to us
 
 For example:
 
-### `Button.js`
+### `Button.tsx`
 
 ```js
-import React, { Component } from 'react';
+import * as React from 'react';
 
-class Button extends Component {
+interface IProps {
+
+}
+
+interface IState {
+
+}
+
+class Button extends React.Component<IProps, IState> {
   render() {
     // ...
   }
 }
 
-export default Button; // Don’t forget to use export default!
+export Button; // Don’t forget to use export!
 ```
 
-### `DangerButton.js`
+### `DangerButton.tsx`
 
 
 ```js
-import React, { Component } from 'react';
-import Button from './Button'; // Import a component from another file
+import * as React from 'react';
 
-class DangerButton extends Component {
+import { Button } from './Button'; // Import a component from another file
+
+interface IProps {
+  color: string;
+}
+
+interface IState {
+  
+}
+
+class DangerButton extends React.Component<IProps, IState> {
   render() {
-    return <Button color="red" />;
+    return <Button color="{this.props.color}" />;
   }
 }
 
-export default DangerButton;
+export DangerButton;
 ```
 
 Be aware of the [difference between default and named exports](http://stackoverflow.com/questions/36795819/react-native-es-6-when-should-i-use-curly-braces-for-import/36796281#36796281). It is a common source of mistakes.
 
-We suggest that you stick to using default imports and exports when a module only exports a single thing (for example, a component). That’s what you get when you use `export default Button` and `import Button from './Button'`.
+We suggest that you stick to using named imports and exports when a module only exports a single thing (for example, a component). That’s what you get when you use `export Button` and `import { Button } from './Button'`.
 
 Named exports are useful for utility modules that export several functions. A module may have at most one default export and as many named exports as you like.
 
@@ -267,13 +297,13 @@ This project setup uses [Webpack](https://webpack.github.io/) for handling all a
 }
 ```
 
-### `Button.js`
+### `Button.tsx`
 
 ```js
-import React, { Component } from 'react';
+import * as React from 'react';
 import './Button.css'; // Tell Webpack that Button.js uses these styles
 
-class Button extends Component {
+class Button extends React.Component<{}, {}> {
   render() {
     // You can use them as regular CSS styles
     return <div className="Button" />;
@@ -329,7 +359,7 @@ You can **`import` an image right in a JavaScript module**. This tells Webpack t
 Here is an example:
 
 ```js
-import React from 'react';
+import * as React from 'react';
 import logo from './logo.png'; // Tell Webpack this JS file uses this image
 
 console.log(logo); // /logo.84287d09.png
@@ -411,6 +441,7 @@ Install React Bootstrap and Bootstrap from NPM. React Bootstrap does not include
 ```
 npm install react-bootstrap --save
 npm install bootstrap@3 --save
+npm install @types/react-bootstrap --save-dev
 ```
 
 Import Bootstrap CSS and optionally Bootstrap theme CSS in the ```src/index.js``` file:
@@ -659,13 +690,13 @@ We recommend that you use a separate tool for browser end-to-end tests if you ne
 
 Jest will look for test files with any of the following popular naming conventions:
 
-* Files with `.js` suffix in `__tests__` folders.
-* Files with `.test.js` suffix.
-* Files with `.spec.js` suffix.
+* Files with `.js`, `.ts` or `.tsx` suffix in `__tests__` folders.
+* Files with `.test.js`, `.test.ts` or `.test.tsx` suffix.
+* Files with `.spec.js`, `.spec.ts` or `.spec.tsx` suffix.
 
-The `.test.js` / `.spec.js` files (or the `__tests__` folders) can be located at any depth under the `src` top level folder.
+The `.test.(js|ts|tsx)` / `.spec.(js|ts|tsx)`  files (or the `__tests__` folders) can be located at any depth under the `src` top level folder.
 
-We recommend to put the test files (or `__tests__` folders) next to the code they are testing so that relative imports appear shorter. For example, if `App.test.js` and `App.js` are in the same folder, the test just needs to `import App from './App'` instead of a long relative path. Colocation also helps find tests more quickly in larger projects.
+We recommend to put the test files (or `__tests__` folders) next to the code they are testing so that relative imports appear shorter. For example, if `App.test.tsx` and `App.tsx` are in the same folder, the test just needs to `import App from './App'` instead of a long relative path. Colocation also helps find tests more quickly in larger projects.
 
 ### Command Line Interface
 

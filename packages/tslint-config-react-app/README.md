@@ -1,10 +1,10 @@
-TSlint configuration used in `@nlesc/react-scripts` package.
+[TSlint](http://palantir.github.io/tslint/) configuration used in `@nlesc/react-scripts` package.
 
 TSlint ruleset which combines:
 
-* tslint-microsoft-contrib
-* tslint-react
-* tslint:latest
+* [tslint-microsoft-contrib](https://github.com/Microsoft/tslint-microsoft-contrib)
+* [tslint-react](https://github.com/palantir/tslint-react)
+* [tslint:latest](https://github.com/palantir/tslint/blob/master/src/configs/latest.ts)
 
 To use in `create-react-app` we overridden several rules to make it compatible with webpack and have similar rules to eslint-config-react-app package.
 

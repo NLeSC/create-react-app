@@ -1,16 +1,18 @@
-# Create React App [![Build Status](https://travis-ci.org/facebookincubator/create-react-app.svg?branch=master)](https://travis-ci.org/facebookincubator/create-react-app)
+# Create React App [![Build Status](https://travis-ci.org/NLeSC/create-react-app.svg?branch=master)](https://travis-ci.org/NLeSC/create-react-app)
+
+This a fork which adds TypeScript support to the react-scripts package and adds a tslint-config-react-app package.
 
 Create React apps with no build configuration.
 
 * [Getting Started](#getting-started) – How to create a new app.
-* [User Guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md) – How to develop apps bootstrapped with Create React App.
+* [User Guide](https://github.com/NLeSC/create-react-app/blob/master/packages/react-scripts/template/README.md) – How to develop apps bootstrapped with Create React App.
 
 ## tl;dr
 
 ```sh
 npm install -g create-react-app
 
-create-react-app my-app
+create-react-app my-app --scripts-version @nlesc/react-scripts
 cd my-app/
 npm start
 
@@ -42,7 +44,7 @@ npm install -g create-react-app
 To create a new app, run:
 
 ```sh
-create-react-app my-app
+create-react-app my-app --scripts-version @nlesc/react-scripts
 cd my-app
 ```
 
@@ -54,17 +56,18 @@ my-app/
   README.md
   node_modules/
   package.json
-  .gitignore
   public/
-    favicon.ico
     index.html
+    favicon.ico
   src/
     App.css
-    App.js
-    App.test.js
+    App.tsx
+    App.test.tsx
     index.css
-    index.js
+    index.tsx
     logo.svg
+  tsconfig.json
+  tslint.json    
 ```
 
 No configuration or complicated folder structures, just the files you need to build your app.<br>
