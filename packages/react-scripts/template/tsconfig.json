@@ -13,8 +13,7 @@
         "strictNullChecks": true,
         "target": "es6"
     },
-    "files": [
-        "src/typings.d.ts",
-        "src/index.tsx"
+    "exclude": [
+        "node_modules/**/*"
     ]
 }
