@@ -4,8 +4,7 @@ var args = [
     '-t',
     'verbose',
     '--project',
-    './tsconfig.json',
-    '--type-check'
+    './tsconfig.json'
 ];
 var proc = spawn('tslint', args, {
     stdio: 'inherit'
