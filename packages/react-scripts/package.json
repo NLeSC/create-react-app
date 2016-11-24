@@ -1,6 +1,6 @@
 {
   "name": "@nlesc/react-scripts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Configuration and scripts for Create React App with Typescript.",
   "repository": "NLeSC/create-react-app",
   "license": "BSD-3-Clause",
@@ -23,7 +23,7 @@
     "react-scripts": "./bin/react-scripts.js"
   },
   "dependencies": {
-    "@nlesc/tslint-config-react-app": "^1.1.0",
+    "@nlesc/tslint-config-react-app": "^1.1.1",
     "@types/jest": "^15.1.32",
     "autoprefixer": "6.5.1",
     "awesome-typescript-loader": "^2.2.4",
