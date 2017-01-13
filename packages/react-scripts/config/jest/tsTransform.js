@@ -6,7 +6,7 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-// This file is a merger between the original transform.js and ts-jest/dist/preprocessor.js (https://github.com/kulshekhar/ts-jest/blob/e1f95e524ed62091736f70abf63530f1f107ec03/src/preprocessor.ts)
+// This file is a merger between the original transform.js and ts-jest/dist/preprocessor.js (https://github.com/kulshekhar/ts-jest/blob/370b9629d0c681aef6e0d869ce11073e60ca59ae/src/preprocessor.ts)
 // The preprocessor from ts-jest could not be used directly,
 // because it did not use babel and
 // could not get configuration from the right place (../utils/createJestConfig.js)
@@ -21,7 +21,8 @@ const getPackageRoot = require('jest-util').getPackageRoot;
 const root = getPackageRoot();
 
 const babelTransformer = babelJest.createTransformer({
-  presets: [require.resolve('babel-preset-react-app')]
+  presets: [require.resolve('babel-preset-react-app')],
+  babelrc: false
 });
 
 function initializeCache(config) {
@@ -42,12 +43,11 @@ function initializeCache(config) {
 }
 
 function tsProcess(src, path, config) {
-  if (path.endsWith('.ts') || path.endsWith('.tsx')) {
     if (config.testResultsProcessor && !global.__ts_coverage__cache__) {
       // initialize only once
       initializeCache(config);
     }
-    var transpiled = tsc.transpileModule(src, {
+    const transpiled = tsc.transpileModule(src, {
       compilerOptions: tsJestUtils.getTSConfig(config.globals, config.collectCoverage),
       fileName: path
     });
@@ -56,10 +56,14 @@ function tsProcess(src, path, config) {
         global.__ts_coverage__cache__.sourceCache[path] = transpiled.outputText;
       }
     }
-    var modified = "require('ts-jest').install();" + transpiled.outputText;
+
+    const start = transpiled.outputText.length > 12 ? transpiled.outputText.substr(1, 10) : '';
+
+    const modified = start === 'use strict'
+       ? `'use strict';require('ts-jest').install();${transpiled.outputText}`
+       : `require('ts-jest').install();${transpiled.outputText}`;
+
     return modified;
-  }
-  return src;
 }
 
 // transpile the source with TypeScript, if needed, and then with Babel
