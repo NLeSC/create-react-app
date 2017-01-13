@@ -43,6 +43,7 @@ function initializeCache(config) {
 }
 
 function tsProcess(src, path, config) {
+  if (path.endsWith('.ts') || path.endsWith('.tsx')) {
     if (config.testResultsProcessor && !global.__ts_coverage__cache__) {
       // initialize only once
       initializeCache(config);
@@ -64,6 +65,8 @@ function tsProcess(src, path, config) {
        : `require('ts-jest').install();${transpiled.outputText}`;
 
     return modified;
+  }
+  return src;
 }
 
 // transpile the source with TypeScript, if needed, and then with Babel
