@@ -6,6 +6,7 @@ node_js:
   - 6
 before_script:
   - "npm install tslint"
+  - "npm install babel-core"
 cache:
   directories:
   - node_modules
