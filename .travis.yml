@@ -4,10 +4,6 @@ node_js:
   - 0.10
   - 4
   - 6
-before_script:
-  - "npm install tslint"
-  - "npm install babel-core"
-  - "npm install typescript"
 cache:
   directories:
   - node_modules
