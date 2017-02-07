@@ -4,6 +4,8 @@ node_js:
   - 0.10
   - 4
   - 6
+before_script:
+  - "npm install tslint"
 cache:
   directories:
   - node_modules
