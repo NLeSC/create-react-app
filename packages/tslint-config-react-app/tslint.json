@@ -17,7 +17,6 @@
         "no-relative-imports": false,
         "no-for-in-array": false,
         "no-reserved-keywords": false,
-        "no-unused-variable": [true, "react"],
         "restrict-plus-operands": false,
         "quotemark": [
             true,
