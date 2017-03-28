@@ -1,17 +1,18 @@
 /**
- * Copyright (c) 2014-present, Facebook, Inc. All rights reserved.
+ * Copyright (c) 2016-present, Netherlands eScience Center
+ * All rights reserved.
  *
  * This source code is licensed under the BSD-style license found in the
  * LICENSE file in the root directory of this source tree. An additional grant
  * of patent rights can be found in the PATENTS file in the same directory.
  */
+'use strict';
 
 // This file is a merger between the original transform.js and ts-jest/dist/preprocessor.js (https://github.com/kulshekhar/ts-jest/blob/370b9629d0c681aef6e0d869ce11073e60ca59ae/src/preprocessor.ts)
 // The preprocessor from ts-jest could not be used directly,
 // because it did not use babel and
 // could not get configuration from the right place (../utils/createJestConfig.js)
 // instead it was retrieved from of argv which was incomplete
-
 const babelJest = require('babel-jest');
 const tsc = require('typescript');
 const glob = require('glob-all');
