@@ -1070,7 +1070,7 @@ npm install --save-dev jest-enzyme
 ```
 
 ```js
-// src/setupTests.js
+// src/setupTests.ts
 import 'jest-enzyme';
 ```
 
@@ -1092,11 +1092,11 @@ and then use them in your tests like you normally do.
 
 >Note: this feature is available with `react-scripts@0.4.0` and higher.
 
-If your app uses a browser API that you need to mock in your tests or if you just need a global setup before running your tests, add a `src/setupTests.js` to your project. It will be automatically executed before running your tests.
+If your app uses a browser API that you need to mock in your tests or if you just need a global setup before running your tests, add a `src/setupTests.ts` to your project. It will be automatically executed before running your tests.
 
 For example:
 
-#### `src/setupTests.js`
+#### `src/setupTests.ts`
 ```js
 const localStorageMock = {
   getItem: jest.fn(),
