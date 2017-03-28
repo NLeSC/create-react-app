@@ -7,16 +7,18 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
+'use strict';
+
 // Note: this file does not exist after ejecting.
 
-const pathExists = require('path-exists');
+const fs = require('fs');
 const paths = require('../config/paths');
 const path = require('path');
 
 module.exports = (resolve, rootDir, isEjecting) => {
   // Use this instead of `paths.testsSetup` to avoid putting
   // an absolute filename into configuration after ejecting.
-  const setupTestsFile = pathExists.sync(paths.testsSetup) ? '<rootDir>/src/setupTests.js' : undefined;
+  const setupTestsFile = fs.existsSync(paths.testsSetup) ? '<rootDir>/src/setupTests.js' : undefined;
 
   const compilerOptions = require(path.resolve('./tsconfig.json')).compilerOptions;
   // Jest gives `SyntaxError: Unexpected token import` error when ES6 module are emitted
@@ -32,7 +34,7 @@ module.exports = (resolve, rootDir, isEjecting) => {
     moduleFileExtensions: ['jsx', 'js', 'json', 'ts', 'tsx'],
     setupTestFrameworkScriptFile: setupTestsFile,
     testPathIgnorePatterns: [
-      '<rootDir>[/\\\\](build|docs|node_modules)[/\\\\]'
+      '<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]'
     ],
     testEnvironment: 'node',
     testRegex: "(/__tests__/.*|\.(test|spec))\.(ts|tsx|js|jsx)$",
