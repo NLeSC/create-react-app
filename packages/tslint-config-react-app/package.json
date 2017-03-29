@@ -1,6 +1,6 @@
 {
   "name": "@nlesc/tslint-config-react-app",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "description": "TSLint configuration used by Create React App",
   "main": "tslint.json",
   "scripts": {
@@ -12,7 +12,8 @@
   },
   "license": "Apache-2.0",
   "dependencies": {
-    "tslint-microsoft-contrib": "^2.0.13",
-    "tslint-react": "^1.1.0"
+    "tslint": "^4.5.1",
+    "tslint-microsoft-contrib": "^4.0.1",
+    "tslint-react": "^2.5.0"
   }
 }
