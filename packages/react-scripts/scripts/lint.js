@@ -8,19 +8,17 @@
  */
 
 'use strict';
-var spawn = require('cross-spawn');
 
-var args = [
-    '-t',
-    'verbose',
-    '--project',
-    './tsconfig.json'
-];
-var proc = spawn('tslint', args, {
-    stdio: 'inherit'
-});
-proc.on('exit', (code) => {
-    process.exit(code);
-});
+var runner = require('tslint/lib/runner');
+
+var options = {
+    format: 'stylish',
+    project: './tsconfig.json'
+};
+
+new runner.Runner(options, process.stdout)
+    .run(function (status) { return process.exit(status); });
 
 // TODO also run eslint
+
+// TODO add npm run tslint -- --fix option

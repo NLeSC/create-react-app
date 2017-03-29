@@ -1,6 +1,6 @@
 {
   "name": "@nlesc/react-scripts",
-  "version": "0.3.0",
+  "version": "0.1.2",
   "description": "Configuration and scripts for Create React App with Typescript.",
   "repository": "NLeSC/create-react-app",
   "license": "BSD-3-Clause",
@@ -23,10 +23,10 @@
     "react-scripts": "./bin/react-scripts.js"
   },
   "dependencies": {
-    "@nlesc/tslint-config-react-app": "^1.1.1",
-    "@types/jest": "^15.1.32",
-    "awesome-typescript-loader": "=3.0.3",
-    "autoprefixer": "6.7.2",
+    "@nlesc/tslint-config-react-app": "^2.0.0",
+    "@types/jest": "^18.1.0",
+    "awesome-typescript-loader": "=3.1.2",
+    "autoprefixer": "6.7.7",
     "babel-core": "6.22.1",
     "babel-eslint": "7.1.1",
     "babel-jest": "18.0.0",
@@ -59,10 +59,10 @@
     "promise": "7.1.1",
     "react-dev-utils": "^0.5.2",
     "style-loader": "0.13.1",
-    "tslint": "^3.15.1",
-    "tslint-loader": "^2.1.5",
-    "ts-jest": "^17.0.3",
+    "tslint": "^4.5.1",
+    "tslint-loader": "^3.4.3",
     "typescript": "=2.2.0",
+    "ts-jest": "^18.0.3",
     "url-loader": "0.5.7",
     "webpack": "1.14.0",
     "webpack-dev-server": "1.16.2",
@@ -70,6 +70,9 @@
     "whatwg-fetch": "2.0.2"
   },
   "devDependencies": {
+    "@types/node":  "^7.0.6",
+    "@types/react": "^15.0.20",
+    "@types/react-dom": "^0.14.23",
     "react": "^15.3.0",
     "react-dom": "^15.3.0"
   },

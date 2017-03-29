@@ -214,6 +214,9 @@ module.exports = {
     configFile: path.join(__dirname, '../eslintrc'),
     useEslintrc: false,
   },
+  tslint: {
+    formatter: 'stylish'
+  },
   // @remove-on-eject-end
   // We use PostCSS for autoprefixing only.
   postcss: function() {
