@@ -93,12 +93,19 @@ module.exports = function(appPath, appName, verbose, originalDirectory, template
     fs.unlinkSync(templateDependenciesPath);
   }
 
-  var proc = spawn(command, args, {stdio: 'inherit'});
-  proc.on('close', function (code) {
-    if (code !== 0) {
-    console.error('`' + command + ' ' + args.join(' ') + '` failed');
-    return;
+  // Install react and react-dom for backward compatibility with old CRA cli
+  // which doesn't install react and react-dom along with react-scripts
+  // or template is presetend (via --internal-testing-template)
+  if (!isReactInstalled(appPackage) || template) {
+    console.log('Installing react and react-dom using ' + command + '...');
+    console.log();
+
+    var proc = spawn.sync(command, args, {stdio: 'inherit'});
+    if (proc.status !== 0) {
+      console.error('`' + command + ' ' + args.join(' ') + '` failed');
+      return;
     }
+  }
 
   // Run another npm install for react and react-dom typescript type definitions
   console.log('Installing @types/react and @types/react-dom from npm...');
@@ -115,22 +122,10 @@ module.exports = function(appPath, appName, verbose, originalDirectory, template
   }
   targs.push('@types/react', '@types/react-dom');
   
-  var proc = spawn('npm', targs, {stdio: 'inherit'});
-  proc.on('close', function (code) {
-    if (code !== 0) {
-      console.error('`' + command + ' ' + targs.join(' ') + '` failed');
-  // Install react and react-dom for backward compatibility with old CRA cli
-  // which doesn't install react and react-dom along with react-scripts
-  // or template is presetend (via --internal-testing-template)
-  if (!isReactInstalled(appPackage) || template) {
-    console.log('Installing react and react-dom using ' + command + '...');
-    console.log();
-
-    var proc = spawn.sync(command, args, {stdio: 'inherit'});
-    if (proc.status !== 0) {
-      console.error('`' + command + ' ' + args.join(' ') + '` failed');
-      return;
-    }
+  var tproc = spawn(command, targs, {stdio: 'inherit'});
+  if (tproc.status !== 0) {
+    console.error('`' + command + ' ' + targs.join(' ') + '` failed');
+    return;
   }
 
   // Display the most elegant way to cd.
