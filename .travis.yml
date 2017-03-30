@@ -20,7 +20,8 @@ env:
   matrix:
     - TEST_SUITE=simple
     - TEST_SUITE=installs
-    - TEST_SUITE=kitchensink
+# temporarily disabled kitchensink test; until https://github.com/NLeSC/create-react-app/issues/54 is resolved
+#   - TEST_SUITE=kitchensink
 matrix:
   include:
     - node_js: 0.10
