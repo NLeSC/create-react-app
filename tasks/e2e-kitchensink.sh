@@ -122,6 +122,11 @@ cd test-kitchensink
 # Link to our preset
 npm link "$root_path"/packages/babel-preset-react-app
 
+# internal testing kitchensink template doesn't have tsconfig (or tslint) so
+# copy from App template
+cp "$root_path"/packages/react-scripts/template/tsconfig.json .
+cp "$root_path"/packages/react-scripts/template/tslint.json .
+
 # Test the build
 REACT_APP_SHELL_ENV_MESSAGE=fromtheshell \
   NODE_PATH=src \
