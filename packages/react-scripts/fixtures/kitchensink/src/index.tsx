@@ -7,9 +7,9 @@
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { App } from './App';
 
 ReactDOM.render(
   <App />,
