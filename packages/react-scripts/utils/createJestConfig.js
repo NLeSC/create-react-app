@@ -20,7 +20,7 @@ module.exports = (resolve, rootDir, isEjecting) => {
   // an absolute filename into configuration after ejecting.
   const setupTestsFile = fs.existsSync(paths.testsSetup) ? '<rootDir>/src/setupTests.js' : undefined;
 
-  const compilerOptions = require(path.resolve('./tsconfig.json')).compilerOptions;
+  const compilerOptions = require(path.resolve(paths.appTsConfig)).compilerOptions;
   // Jest gives `SyntaxError: Unexpected token import` error when ES6 module are emitted
   compilerOptions.module = "commonjs";
   // Expected Babel transformer to convert jsx to js

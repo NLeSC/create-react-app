@@ -157,7 +157,8 @@ module.exports = {
             // @remove-on-eject-begin
             presets: [require.resolve('babel-preset-react-app')],
             // @remove-on-eject-end
-          }
+          },
+          configFileName: paths.appTsConfig
         }
       },
       // Process JS with Babel.
