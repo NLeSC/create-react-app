@@ -8,7 +8,7 @@ The `@nlesc/react-scripts` package can be used by:
 create-react-app my-app --scripts-version @nlesc/react-scripts
 ```
 
-This package includes scripts and configuration used by [Create React App](https://github.com/facebookincubator/create-react-app).  
+This package includes scripts and configuration used by [Create React App](https://github.com/facebookincubator/create-react-app).<br>
 Please refer to its documentation:
 
 * [Getting Started](https://github.com/facebookincubator/create-react-app/blob/master/README.md#getting-started) – How to create a new app.
