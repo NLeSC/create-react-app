@@ -25,6 +25,7 @@
   "dependencies": {
     "@nlesc/tslint-config-react-app": "2.0.0",
     "@types/jest": "18.1.0",
+    "@types/node": "^7.0.12",
     "autoprefixer": "6.7.7",
     "awesome-typescript-loader": "3.1.2",
     "babel-core": "6.22.1",
