@@ -17,12 +17,13 @@ module.exports = (resolve, rootDir, isEjecting) => {
   // Use this instead of `paths.testsSetup` to avoid putting
   // an absolute filename into configuration after ejecting.
   const setupTestsFile = fs.existsSync(paths.testsSetup)
-    ? '<rootDir>/src/setupTests.js'
+    ? '<rootDir>/src/setupTests.ts'
     : undefined;
 
   // TODO: I don't know if it's safe or not to just use / as path separator
   // in Jest configs. We need help from somebody with Windows to determine this.
   const config = {
+    mapCoverage: true,
     collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}'],
     setupFiles: [resolve('config/polyfills.js')],
     setupTestFrameworkScriptFile: setupTestsFile,
@@ -38,9 +39,7 @@ module.exports = (resolve, rootDir, isEjecting) => {
       '^.+\\.(js|jsx)$': isEjecting
         ? '<rootDir>/node_modules/babel-jest'
         : resolve('config/jest/babelTransform.js'),
-      '^.+\\.(ts|tsx)$': isEjecting ?
-        '<rootDir>/config/jest/tsTransform.js'
-        : resolve('config/jest/tsTransform.js'),
+      '^.+\\.(ts|tsx)$': '<rootDir>/node_modules/ts-jest/preprocessor.js',
       '^.+\\.css$': resolve('config/jest/cssTransform.js'),
       '^(?!.*\\.(js|jsx|css|json)$)': resolve('config/jest/fileTransform.js'),
     },
@@ -48,10 +47,6 @@ module.exports = (resolve, rootDir, isEjecting) => {
     moduleNameMapper: {
       '^react-native$': 'react-native-web',
     },
-    testResultsProcessor: require.resolve("ts-jest/coverageprocessor"),
-    globals: {
-      "__TS_CONFIG__": compilerOptions
-    }
   };
   if (rootDir) {
     config.rootDir = rootDir;
