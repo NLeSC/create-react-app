@@ -332,9 +332,9 @@ Typings can be installed with `npm`:
 npm install --save-dev @types/<library-name>
 ```
 
-If library does not have typings, it possible to add the typings manually to `src/typings.d.ts` file:
+If library does not have typings, it possible to add the typings manually to `typePatches/<library-name>.d.ts` file:
 ```
-// in src/typings.d.ts
+// in typePatches/typeless-package.d.ts
 declare module 'typeless-package';
 
 // in src/App.tsx
