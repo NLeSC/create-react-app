@@ -191,17 +191,7 @@ module.exports = {
       {
         test: /\.(ts|tsx)?$/,
         include: paths.appSrc,
-        loader: 'awesome-typescript',
-        query: {
-          // when TypeScript emits a file, pass it to Babel to provide backwards compatibility
-          useBabel: true,
-          babelOptions: {
-            // @remove-on-eject-begin
-            presets: [require.resolve('babel-preset-react-app')],
-            // @remove-on-eject-end
-          },
-          configFileName: paths.appTsConfig
-        }
+        loader: 'awesome-typescript-loader'
       },
       // Process JS with Babel.
       {
