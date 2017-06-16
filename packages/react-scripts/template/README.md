@@ -1307,7 +1307,7 @@ Run `npm test -- --coverage` (note extra `--` in the middle) to include a covera
 
 Note that tests run much slower with coverage so it is recommended to run it separately from your normal workflow.
 
-The coverage can be found in the `coverage/remapped/` directory in different formats like html and lcov.
+The coverage can be found in the `coverage/` directory in different formats like html and lcov.
 
 ### Continuous Integration
 
