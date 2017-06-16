@@ -129,8 +129,12 @@ module.exports = {
       // It's important to do this before Babel or TypeScript processes the JS/TS.
       {
         test: /\.(ts|tsx)$/,
-        loader: 'tslint',
-        include: paths.appSrc
+        enforce: 'pre',
+        loader: 'tslint-loader',
+        include: paths.appSrc,
+        options: {
+          formatter: 'stylish'
+        }
       },
       {
         test: /\.(js|jsx)$/,
