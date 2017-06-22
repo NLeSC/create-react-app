@@ -138,7 +138,7 @@ module.exports = function(
   }
 
   // Run another npm install for react and react-dom typescript type definitions
-  console.log('Installing @types/react and @types/react-dom using ${command}...');
+  console.log(`Installing @types/react and @types/react-dom using ${command}...`);
   console.log();
   let targs;
   if (useYarn) {
