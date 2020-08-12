@@ -1,3 +1,5 @@
+# https://create-react-app.dev/ now has support for TypeScript, so this repo should no longer be used
+
 # Create React App [![Build Status](https://travis-ci.org/NLeSC/create-react-app.svg?branch=master)](https://travis-ci.org/NLeSC/create-react-app)
 
 This a fork which adds TypeScript support to the react-scripts package and adds a tslint-config-react-app package.
